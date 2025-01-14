@@ -1,17 +1,13 @@
 <script lang="ts">
-	import Header from './Header.svelte';
 	import '../app.css';
 
 	let { children } = $props();
 </script>
 
 <div class="app">
-
-	<main>
+	<main >
 		{@render children()}
 	</main>
-
-	
 </div>
 
 <style>
@@ -27,7 +23,7 @@
 		flex-direction: column;
 		padding: 1rem;
 		width: 100%;
-		max-width: 64rem;
+		height: 100%;
 		margin: 0 auto;
 		box-sizing: border-box;
 	}

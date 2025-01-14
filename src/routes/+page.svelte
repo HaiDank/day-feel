@@ -1,15 +1,22 @@
 <script lang="ts">
 	import chroma from 'chroma-js';
 	import { onMount } from 'svelte';
+	import { colorScheme } from '../store/store';
+	import ColorSchemePicker from '$lib/components/ui/color-scheme-picker/colorSchemePicker.svelte';
+	import { Slider } from '$lib/components/ui/slider';
+	import Calendar from '$lib/components/ui/calendar/Calendar.svelte';
 
 	let slider: HTMLInputElement;
 	let display: HTMLDivElement;
 	let display2: HTMLDivElement;
 	let sliderValue: number = $state(50);
-	export const colors = ['#F7E58C', '#EEBB79', '#E2894D', '#9C495D', '#393B57'];
+	// let colors: string[]
+	// colorScheme.subscribe(value => {
+	// 	colors = value
+	// })
 
-	const scale = chroma.scale(colors).mode('hsl').domain([0, 100]);
-	const gradient = scale.colors(100)
+	const scale = chroma.scale($colorScheme).mode('hsl').domain([0, 100]);
+	const gradient = scale.colors(100);
 
 	$effect(() => {
 		slider.style.background = `linear-gradient(to right, ${gradient.join(', ')})`;
@@ -23,19 +30,23 @@
 	<meta name="description" content="rate day's feeling based on color" />
 </svelte:head>
 
-<section class="flex flex-col items-center justify-center p-96">
+<section class="flex h-full w-full flex-col items-center justify-center gap-8 bg-slate-50">
 	<input
-		bind:this={slider}
 		bind:value={sliderValue}
+		bind:this={slider}
 		type="range"
 		min="0"
 		max="100"
 		id="color-slider"
-		class="slider h-4 w-96 appearance-none rounded-full transition-all"
+		class={`slider h-3 w-96 appearance-none rounded-full transition-all`}
 	/>
 
 	<!-- <div id="display" bind:this={display} class="h-8 w-96"></div> -->
-	<div id="display2" bind:this={display2} class="p-5 m-8"></div>
+	<div id="display2" bind:this={display2} class="m-8 p-5"></div>
+
+	<ColorSchemePicker />
+
+	<Calendar />
 </section>
 
 <style>

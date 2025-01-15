@@ -15,13 +15,13 @@
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
+		overflow: hidden;
 	}
 
 	main {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		padding: 1rem;
 		width: 100%;
 		height: 100%;
 		margin: 0 auto;

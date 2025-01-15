@@ -17,7 +17,7 @@
 </script>
 
 <div class={clsx(isDarkMode && 'dark')}>
-	<ColorPicker bind:color position="responsive" label=""/>
+	<ColorPicker bind:color position="responsive-y" label=""/>
 </div>
 
 <style>
